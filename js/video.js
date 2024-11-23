@@ -12,7 +12,7 @@ window.addEventListener("load", function() {
 
     // Update volume information
     var volumeDisplay = document.getElementById("volume");
-    video.volume = 0.5; // Default volume to 50%
+    video.volume = 1.0; // Default volume to 100%
     volumeDisplay.innerHTML = video.volume * 100 + '%';
 	
 });

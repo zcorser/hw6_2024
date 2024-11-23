@@ -1,6 +1,6 @@
 var video;
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
 	console.log("Good job opening the window")
 	video = document.getElementById("player1");
 	// Turn off autoplay
@@ -10,79 +10,79 @@ window.addEventListener("load", function() {
 	video.loop = false;
 	console.log("Looping is off");
 
-    // Update volume information
-    var volumeDisplay = document.getElementById("volume");
-    video.volume = 1.0; // Default volume to 100%
-    volumeDisplay.innerHTML = video.volume * 100 + '%';
-	
+	// Update volume information
+	var volumeDisplay = document.getElementById("volume");
+	video.volume = 1.0; // Default volume to 100%
+	volumeDisplay.innerHTML = video.volume * 100 + '%';
+
 });
 // Play the video
-document.querySelector("#play").addEventListener("click", playVideo); 
-	function playVideo() {
+document.querySelector("#play").addEventListener("click", playVideo);
+function playVideo() {
 	console.log("Play Video");
 	video.play();
 	updateVolumeInfo();
-	}
+}
 // Pause the video
 document.getElementById("pause").addEventListener("click", pauseVideo);
-	function pauseVideo() {
-		console.log("Pause Video");
-		video.pause();
-	}
+function pauseVideo() {
+	console.log("Pause Video");
+	video.pause();
+}
 // Slow down the video by 10%
 document.getElementById("slower").addEventListener("click", slowDownVideo);
-	function slowDownVideo() {
-    	console.log("Slow Down Video");
-    	video.playbackRate *= 0.9;
-    	console.log("New speed:", video.playbackRate);
-	}
+function slowDownVideo() {
+	console.log("Slow Down Video");
+	video.playbackRate *= 0.9;
+	console.log("New speed:", video.playbackRate);
+}
 // Speed up the video by 10%
-    document.getElementById("faster").addEventListener("click", speedUpVideo);
-	function speedUpVideo() {
-		console.log("Speed Up Video");
-		video.playbackRate /= 0.9;
-		console.log("New speed:", video.playbackRate);
-	}
+document.getElementById("faster").addEventListener("click", speedUpVideo);
+function speedUpVideo() {
+	console.log("Speed Up Video");
+	video.playbackRate /= 0.9;
+	console.log("New speed:", video.playbackRate);
+}
 // Skip ahead by 10 seconds
-    document.getElementById("skip").addEventListener("click", skipAhead);
-	function skipAhead() {
-		console.log("Skip Ahead");
-		video.currentTime += 10;
-		if (video.currentTime >= video.duration) {
-			video.currentTime = 0;
-		}
-		console.log("Current time:", video.currentTime);
+document.getElementById("skip").addEventListener("click", skipAhead);
+function skipAhead() {
+	console.log("Skip Ahead");
+	video.currentTime += 10;
+	if (video.currentTime >= video.duration) {
+		video.currentTime = 0;
 	}
+	console.log("Current time:", video.currentTime);
+}
 // Mute the video (and unmute it)
-    document.getElementById("mute").addEventListener("click", toggleMute);
-	function toggleMute() {
-		if (video.muted) {
-			video.muted = false;
-			this.innerHTML = "Mute";
-		} else {
-			video.muted = true;
-			this.innerHTML = "Unmute";
-		}
-		console.log("Mute status:", video.muted);
+document.getElementById("mute").addEventListener("click", toggleMute);
+function toggleMute() {
+	if (video.muted) {
+		video.muted = false;
+		this.innerHTML = "Mute";
+	} else {
+		video.muted = true;
+		this.innerHTML = "Unmute";
 	}
-// Change the volume and update volume info again
-    document.getElementById("slider").addEventListener("input", changeVolume);
-	function changeVolume() {
-		video.volume = this.value / 100;
-		updateVolumeInfo();
-		console.log("Volume:", video.volume);
-	}
-	function updateVolumeInfo() {
-		var volumeDisplay = document.getElementById("volume");
-		volumeDisplay.innerHTML = (video.volume * 100) + '%';
-	}
-// Change the video styling to old school
-    document.getElementById("vintage").addEventListener("click", applyOldSchool);
-	function applyOldSchool() {
-		video.classList.add("oldSchool");
-	}
+	console.log("Mute status:", video.muted);
+}
+// Change the volume and update volume info again after you move the slider
+document.getElementById("slider").addEventListener("input", changeVolume);
+function changeVolume() {
+	video.volume = this.value / 100;
+	updateVolumeInfo();
+	console.log("Volume:", video.volume);
+}
+function updateVolumeInfo() {
+	var volumeDisplay = document.getElementById("volume");
+	volumeDisplay.innerHTML = (video.volume * 100) + '%';
+}
+// Change the video styling to old school - Chat GPT helped me with this code - I asked it to explain how to add a class from the css onto an element in the html and it gave me the classlist method.
+document.getElementById("vintage").addEventListener("click", applyOldSchool);
+function applyOldSchool() {
+	video.classList.add("oldSchool");
+}
 // Change the video styling to normal
-    document.getElementById("orig").addEventListener("click", removeOldSchool);
-	function removeOldSchool() {
-		video.classList.remove("oldSchool");
-	}
+document.getElementById("orig").addEventListener("click", removeOldSchool);
+function removeOldSchool() {
+	video.classList.remove("oldSchool");
+}
